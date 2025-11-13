@@ -43,13 +43,14 @@ export function ChannelSettingsLayout({ userName, profilePic }) {
   };
 
   const categoriesData = [
-    { key: 1, label: "🎬 Entertainment" },
-    { key: 2, label: "💡 Education" },
-    { key: 3, label: "🎮 Gaming" },
-    { key: 4, label: "🎵 Music" },
-    { key: 5, label: "📸 Lifestyle" },
-    { key: 6, label: "🌍 News & Politics" },
-    { key: 7, label: "⚙️ Technology" },
+    {
+      key: "turn-on",
+      label: "Comments — On ",
+    },
+    {
+      key: "turn-off",
+      label: "Comments — Off ",
+    },
   ];
 
   return (
