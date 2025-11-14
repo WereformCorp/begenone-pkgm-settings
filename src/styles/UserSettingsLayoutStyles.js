@@ -9,7 +9,14 @@ export const UserSettingsLayoutStyles = StyleSheet.create({
   profileSection: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 36,
+    // paddingHorizontal: 36,
+
+    borderBottomWidth: 1,
+    paddingTop: 18,
+    paddingBottom: 18,
+    marginLeft: 36,
+    marginRight: 36,
+    borderColor: globalStyles.colors.colorPrimary450,
   },
   userImage: {
     width: 60,
