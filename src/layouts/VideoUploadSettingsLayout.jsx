@@ -220,13 +220,35 @@ export function VideoUploadSettingsLayout({ profilePic, userName }) {
           <InputField
             placeholder={"Enter Title"}
             inputWrapper={VUSLStyles.inputFields}
+            iconRight={
+              <Ionicons
+                name="reader"
+                size={24}
+                color="#fff"
+                style={{ opacity: 0.3 }}
+              />
+            }
           />
           <InputField
             placeholder={"Enter Description"}
             inputWrapper={VUSLStyles.inputFields}
+            iconRight={
+              <Ionicons
+                name="reader"
+                size={24}
+                color="#fff"
+                style={{ opacity: 0.3 }}
+              />
+            }
           />
           <DropDown
-            styles={{ marginLeft: 24, marginRight: 24, marginTop: 18 }}
+            styles={{
+              marginLeft: 24,
+              marginRight: 24,
+              marginTop: 18,
+              // paddingRight: 24,
+            }}
+            iconStyles={{ paddingRight: 16 }}
             selectText={"Select Age Group"}
             data={[
               { key: 1, label: "Under 14 of age" },
@@ -237,6 +259,7 @@ export function VideoUploadSettingsLayout({ profilePic, userName }) {
           <DropDown
             styles={{ marginLeft: 24, marginRight: 24, marginTop: 18 }}
             selectText={"Comments"}
+            iconStyles={{ paddingRight: 16 }}
             data={[
               { key: 1, label: "Turn — ON" },
               { key: 2, label: "Turn — OFF" },

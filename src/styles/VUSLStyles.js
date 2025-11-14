@@ -11,9 +11,11 @@ export const VUSLStyles = StyleSheet.create({
     height: 50,
     width: "auto",
     backgroundColor: "#252525",
+    justifyContent: "space-between",
     marginLeft: 24,
     marginRight: 24,
     marginTop: 18,
+    paddingRight: 18,
   },
 
   postWireTextContainer: {
