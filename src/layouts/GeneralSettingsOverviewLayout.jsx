@@ -4,7 +4,14 @@ import { VideoCardLayout } from "../../../begenone-pkgm-video";
 import { GSOLStyles } from "../styles/GSOLStyles";
 import { Ionicons } from "@expo/vector-icons";
 
-export function GeneralSettingsOverviewLayout({ VideoCard }) {
+export function GeneralSettingsOverviewLayout({
+  timeAgo,
+  viewsText,
+  titleText,
+  userNameText,
+  contentThumbUrl,
+  channelLogo,
+}) {
   return (
     <ScrollView
       // bounces={true}
@@ -20,7 +27,27 @@ export function GeneralSettingsOverviewLayout({ VideoCard }) {
             horizontal={true}
             style={GSOLStyles.videoCardLayoutContainer}
           >
-            {VideoCard && VideoCard}
+            {/* {VideoCard && VideoCard} */}
+            <VideoCardLayout
+              timeAgo={timeAgo}
+              viewsText={viewsText}
+              titleText={titleText}
+              userNameText={userNameText}
+              contentThumbUrl={contentThumbUrl}
+              channelLogo={channelLogo}
+              //
+              //
+              //
+              // STYLE SETTINGS HERE!!!
+              containerStyles={{ width: 200, marginBottom: 20 }}
+              dateViewsContainerStyle={{ display: "none" }}
+              userImageStyles={{ display: "none" }}
+              titleTextStyles={{ fontSize: 16, lineHeight: 22 }}
+              userNameTextStyles={{ display: "none" }}
+              customMetaDataStyles={{}}
+              thumbnailImageStyles={{}}
+              titleNameContainerStyles={{ paddingLeft: 0 }}
+            />
           </ScrollView>
         </View>
 
@@ -28,7 +55,7 @@ export function GeneralSettingsOverviewLayout({ VideoCard }) {
           <Text style={GSOLStyles.generalText}>General</Text>
 
           <View style={GSOLStyles.settingsButtonContainer}>
-            <CustomizedButton
+            {/* <CustomizedButton
               label={"Likes"}
               style={customStyles.customButton}
               customIcon={<Ionicons name="thumbs-up" size={18} color="#fff" />}
@@ -39,7 +66,7 @@ export function GeneralSettingsOverviewLayout({ VideoCard }) {
               customIcon={
                 <Ionicons name="thumbs-down" size={18} color="#fff" />
               }
-            />
+            /> */}
             <CustomizedButton
               label={"User Settings"}
               style={customStyles.customButton}
