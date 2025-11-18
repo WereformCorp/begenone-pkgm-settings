@@ -25,7 +25,11 @@ import { CustomizedButton, DropDown, InputField } from "@begenone/pkgm-shared";
  * thumbnail handling.
  */
 
-export function VideoUploadSettingsLayout({ profilePic, userName }) {
+export function VideoUploadSettingsLayout({
+  profilePic,
+  userName,
+  onPressWireUploadScreen,
+}) {
   // Local state for raw video URI (Android-only used in UI)
   const [imageAndroid, setImageAndroid] = useState(null);
 
@@ -147,10 +151,35 @@ export function VideoUploadSettingsLayout({ profilePic, userName }) {
 
         {/* -------------------------- Upload Section -------------------------- */}
         <View style={VUSLStyles.inputsContainer}>
-          <View style={VUSLStyles.postWireTextContainer}>
-            <Text style={{ color: "#fff" }}>
-              Post a <Text style={{ color: "#ff6600" }}>Wire</Text>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              // paddingLeft: 24,
+              // flexGrow: 1,
+            }}
+          >
+            <Text
+              style={{
+                color: "#fff",
+                fontWeight: "900",
+                fontSize: 24,
+                // paddingBottom: 12,
+                // flexGrow: 1,
+                // justifyContent: "flex-start",
+              }}
+            >
+              Create <Text style={{ color: "#ff6000" }}>Video</Text>
             </Text>
+            <TouchableOpacity
+              style={VUSLStyles.postWireTextContainer}
+              onPress={onPressWireUploadScreen}
+            >
+              <Text style={{ color: "#fff" }}>
+                Post a <Text style={{ color: "#ff6600" }}>Wire</Text>
+              </Text>
+            </TouchableOpacity>
           </View>
 
           <TouchableOpacity
@@ -219,7 +248,8 @@ export function VideoUploadSettingsLayout({ profilePic, userName }) {
 
           <InputField
             placeholder={"Enter Title"}
-            inputWrapper={VUSLStyles.inputFields}
+            inputWrapper={[VUSLStyles.inputFields, { height: 50 }]}
+            inputStyle={{ color: "#fff" }}
             iconRight={
               <Ionicons
                 name="reader"
@@ -231,7 +261,13 @@ export function VideoUploadSettingsLayout({ profilePic, userName }) {
           />
           <InputField
             placeholder={"Enter Description"}
-            inputWrapper={VUSLStyles.inputFields}
+            inputWrapper={[VUSLStyles.inputFields]}
+            inputStyle={{
+              color: "#fff",
+              minHeight: 100,
+              textAlignVertical: "top",
+            }}
+            multiline
             iconRight={
               <Ionicons
                 name="reader"
@@ -243,10 +279,7 @@ export function VideoUploadSettingsLayout({ profilePic, userName }) {
           />
           <DropDown
             styles={{
-              marginLeft: 24,
-              marginRight: 24,
               marginTop: 18,
-              // paddingRight: 24,
             }}
             iconStyles={{ paddingRight: 16 }}
             selectText={"Select Age Group"}
@@ -257,7 +290,7 @@ export function VideoUploadSettingsLayout({ profilePic, userName }) {
           />
 
           <DropDown
-            styles={{ marginLeft: 24, marginRight: 24, marginTop: 18 }}
+            styles={{ margin: 0, marginTop: 18 }}
             selectText={"Comments"}
             iconStyles={{ paddingRight: 16 }}
             data={[
@@ -273,8 +306,8 @@ export function VideoUploadSettingsLayout({ profilePic, userName }) {
               justifyContent: "space-between",
 
               marginTop: 60,
-              marginLeft: 24,
-              marginRight: 24,
+              // marginLeft: 24,
+              // marginRight: 24,
             }}
           >
             <CustomizedButton

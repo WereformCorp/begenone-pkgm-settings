@@ -7,22 +7,28 @@ export const VUSLStyles = StyleSheet.create({
 
   VUSLStyles: {},
 
+  inputsContainer: {
+    marginRight: 24,
+    marginLeft: 24,
+    marginTop: 24,
+  },
+
   inputFields: {
-    height: 50,
+    // height: 50,
     width: "auto",
     backgroundColor: "#252525",
     justifyContent: "space-between",
-    marginLeft: 24,
-    marginRight: 24,
+    // marginLeft: 24,
+    // marginRight: 24,
     marginTop: 18,
     paddingRight: 18,
   },
 
   postWireTextContainer: {
     width: "auto",
-    marginTop: 36,
-    marginRight: 24,
-    marginLeft: 24,
+    // marginTop: 36,
+    // marginRight: 24,
+    // marginLeft: 24,
     // justifyContent: "center",
     alignItems: "flex-end",
   },
@@ -33,8 +39,8 @@ export const VUSLStyles = StyleSheet.create({
     marginTop: 16,
     height: "auto",
     width: "auto",
-    marginRight: 24,
-    marginLeft: 24,
+    // marginRight: 24,
+    // marginLeft: 24,
     justifyContent: "center",
   },
 

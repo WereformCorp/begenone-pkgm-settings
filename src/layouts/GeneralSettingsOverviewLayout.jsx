@@ -11,14 +11,12 @@ export function GeneralSettingsOverviewLayout({
   userNameText,
   contentThumbUrl,
   channelLogo,
+  onPressUserSettings,
+  onPressChannelSettings,
+  onPressPricings,
 }) {
   return (
-    <ScrollView
-      // bounces={true}
-      // alwaysBounceVertical={true}
-      // overScrollMode="always"
-      style={GSOLStyles.container}
-    >
+    <ScrollView style={GSOLStyles.container}>
       <View style={GSOLStyles.secondaryContainer}>
         <View style={GSOLStyles.historyContainer}>
           {/* History Container */}
@@ -71,16 +69,19 @@ export function GeneralSettingsOverviewLayout({
               label={"User Settings"}
               style={customStyles.customButton}
               customIcon={<Ionicons name="person" size={18} color="#fff" />}
+              onPress={onPressUserSettings}
             />
             <CustomizedButton
               label={"Channel Settings"}
               style={customStyles.customButton}
               customIcon={<Ionicons name="people" size={18} color="#fff" />}
+              onPress={onPressChannelSettings}
             />
             <CustomizedButton
               label={"Pricings"}
               style={customStyles.customButton}
               customIcon={<Ionicons name="cash" size={18} color="#fff" />}
+              onPress={onPressPricings}
             />
           </View>
         </View>
