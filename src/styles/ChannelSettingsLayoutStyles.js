@@ -9,7 +9,14 @@ export const ChannelSettingsLayoutStyles = StyleSheet.create({
   profileSection: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 36,
+    // paddingHorizontal: 36,
+
+    borderBottomWidth: 1,
+    paddingTop: 18,
+    paddingBottom: 18,
+    marginLeft: 36,
+    marginRight: 36,
+    borderColor: globalStyles.colors.colorPrimary450,
   },
   userImage: {
     width: 60,
@@ -33,6 +40,14 @@ export const ChannelSettingsLayoutStyles = StyleSheet.create({
   inputFieldsContainer: {
     flexGrow: 1,
     justifyContent: "flex-start",
+  },
+
+  headingText: {
+    fontSize: 24,
+    color: "#fff",
+    paddingLeft: 36,
+    marginTop: 24,
+    fontWeight: "800",
   },
 
   inputWrapper: {
@@ -60,7 +75,7 @@ export const ChannelSettingsLayoutStyles = StyleSheet.create({
   buttonSection: {
     flex: 1,
     justifyContent: "flex-end",
-    marginTop: 36,
+    marginTop: 84,
     marginBottom: 120,
 
     // borderTopWidth: 1,

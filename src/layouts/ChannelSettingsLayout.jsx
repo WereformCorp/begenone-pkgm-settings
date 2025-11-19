@@ -13,7 +13,11 @@ import { Platform } from "react-native";
 import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
-export function ChannelSettingsLayout({ userName, profilePic }) {
+export function ChannelSettingsLayout({
+  userName,
+  profilePic,
+  onPressUserSettingsText,
+}) {
   const inputFields = [
     { id: "Channel Name" },
     { id: "Channel Id" },
@@ -73,9 +77,7 @@ export function ChannelSettingsLayout({ userName, profilePic }) {
           <Text style={ChannelSettingsLayoutStyles.userName}>
             {userName || "Default Channel Name"}
           </Text>
-          <TouchableOpacity
-            onPress={() => Linking.openURL("https://begenone.com")}
-          >
+          <TouchableOpacity onPress={onPressUserSettingsText}>
             <Text style={ChannelSettingsLayoutStyles.channelSettingsText}>
               {"User Settings —>"}
             </Text>
@@ -84,6 +86,9 @@ export function ChannelSettingsLayout({ userName, profilePic }) {
       </View>
 
       <View style={ChannelSettingsLayoutStyles.inputFieldsContainer}>
+        <Text style={ChannelSettingsLayoutStyles.headingText}>
+          Channel Settings
+        </Text>
         {inputFields.map(inputField => (
           <InputField
             key={inputField.id}

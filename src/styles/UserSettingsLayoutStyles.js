@@ -42,6 +42,14 @@ export const UserSettingsLayoutStyles = StyleSheet.create({
     justifyContent: "flex-start",
   },
 
+  headingText: {
+    fontSize: 24,
+    color: "#fff",
+    paddingLeft: 36,
+    marginTop: 24,
+    fontWeight: "800",
+  },
+
   inputWrapper: {
     backgroundColor: "#202020",
     marginTop: 24,
@@ -56,6 +64,11 @@ export const UserSettingsLayoutStyles = StyleSheet.create({
     color: "white",
     paddingTop: 12,
   },
+
+  defaultInput: {
+    height: 40,
+  },
+
   buttonSection: {
     flex: 1,
     justifyContent: "flex-end",
@@ -99,7 +112,7 @@ export const UserSettingsLayoutStyles = StyleSheet.create({
     // marginLeft: 36,
   },
   dualButton2: {
-    backgroundColor: globalStyles.colors.colorPrimary200,
+    backgroundColor: "#ff0000ff",
     flex: 1,
     width: "auto",
     minWidth: 60,

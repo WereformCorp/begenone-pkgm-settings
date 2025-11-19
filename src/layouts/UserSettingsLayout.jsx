@@ -12,7 +12,12 @@ import { UserSettingsLayoutStyles } from "../styles/UserSettingsLayoutStyles";
 import { Platform } from "react-native";
 import { useState } from "react";
 
-export function UserSettingsLayout({ userName, profilePic }) {
+export function UserSettingsLayout({
+  userName,
+  profilePic,
+  onPressChannelSettingsText,
+  onPressUserSignoutFunction,
+}) {
   const inputFields = [
     { id: "Full Name" },
     { id: "Username" },
@@ -55,9 +60,7 @@ export function UserSettingsLayout({ userName, profilePic }) {
           <Text style={UserSettingsLayoutStyles.userName}>
             {userName || "Default Username"}
           </Text>
-          <TouchableOpacity
-            onPress={() => Linking.openURL("https://begenone.com")}
-          >
+          <TouchableOpacity onPress={onPressChannelSettingsText}>
             <Text style={UserSettingsLayoutStyles.channelSettingsText}>
               {"Channel Settings —>"}
             </Text>
@@ -66,13 +69,15 @@ export function UserSettingsLayout({ userName, profilePic }) {
       </View>
 
       <View style={UserSettingsLayoutStyles.inputFieldsContainer}>
+        <Text style={UserSettingsLayoutStyles.headingText}>User Settings</Text>
         {inputFields.map(inputField => (
           <InputField
             key={inputField.id}
             inputWrapper={UserSettingsLayoutStyles.inputWrapper}
             inputStyle={
-              inputField.id.toLowerCase() === "about" &&
-              UserSettingsLayoutStyles.aboutTextArea
+              (inputField.id.toLowerCase() === "about" &&
+                UserSettingsLayoutStyles.aboutTextArea) ||
+              UserSettingsLayoutStyles.defaultInput
             }
             placeholder={inputField.id}
             value={formData[inputField.id]} // controlled value
@@ -90,11 +95,11 @@ export function UserSettingsLayout({ userName, profilePic }) {
       </View>
 
       <View style={UserSettingsLayoutStyles.buttonSection}>
-        <CustomizedButton
+        {/* <CustomizedButton
           label={"Upgrade"}
           textColor="#ff6600"
           style={UserSettingsLayoutStyles.singleButton}
-        />
+        /> */}
         <View style={UserSettingsLayoutStyles.dualButtonRow}>
           <CustomizedButton
             label={"Save"}
@@ -103,10 +108,11 @@ export function UserSettingsLayout({ userName, profilePic }) {
             style={UserSettingsLayoutStyles.dualButton1}
           />
           <CustomizedButton
-            label={"Schedule"}
+            label={"Logout"}
             textColor="#fff"
             fontWeight={"600"}
             style={UserSettingsLayoutStyles.dualButton2}
+            onPress={onPressUserSignoutFunction}
           />
         </View>
       </View>
