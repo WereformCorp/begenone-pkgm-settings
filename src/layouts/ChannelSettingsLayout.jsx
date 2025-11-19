@@ -89,8 +89,9 @@ export function ChannelSettingsLayout({ userName, profilePic }) {
             key={inputField.id}
             inputWrapper={ChannelSettingsLayoutStyles.inputWrapper}
             inputStyle={
-              inputField.id.toLowerCase() === "about" &&
-              ChannelSettingsLayoutStyles.aboutTextArea
+              (inputField.id.toLowerCase() === "about" &&
+                ChannelSettingsLayoutStyles.aboutTextArea) ||
+              ChannelSettingsLayoutStyles.inputField
             }
             placeholder={inputField.id}
             value={formData[inputField.id]} // controlled value
@@ -100,7 +101,7 @@ export function ChannelSettingsLayout({ userName, profilePic }) {
         ))}
       </View>
 
-      <View>
+      {/* <View>
         <DropDown
           styles={{ marginRight: 36, marginLeft: 36, marginTop: 24 }}
           data={categoriesData}
@@ -117,14 +118,14 @@ export function ChannelSettingsLayout({ userName, profilePic }) {
             }
           />
         ))}
-      </View>
+      </View> */}
 
       <View style={ChannelSettingsLayoutStyles.buttonSection}>
-        <CustomizedButton
+        {/* <CustomizedButton
           label={"Upgrade"}
           textColor="#ff6600"
           style={ChannelSettingsLayoutStyles.singleButton}
-        />
+        /> */}
         <View style={ChannelSettingsLayoutStyles.dualButtonRow}>
           <CustomizedButton
             label={"Save"}
@@ -134,7 +135,7 @@ export function ChannelSettingsLayout({ userName, profilePic }) {
           />
           <CustomizedButton
             label={"Schedule"}
-            textColor="#fff"
+            textColor="grey"
             fontWeight={"600"}
             style={ChannelSettingsLayoutStyles.dualButton2}
           />

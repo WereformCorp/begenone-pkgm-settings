@@ -18,14 +18,12 @@ export function GeneralSettingsOverviewLayout({
   return (
     <ScrollView style={GSOLStyles.container}>
       <View style={GSOLStyles.secondaryContainer}>
-        <View style={GSOLStyles.historyContainer}>
-          {/* History Container */}
+        {/* <View style={GSOLStyles.historyContainer}>
           <Text style={GSOLStyles.historyText}>History</Text>
           <ScrollView
             horizontal={true}
             style={GSOLStyles.videoCardLayoutContainer}
           >
-            {/* {VideoCard && VideoCard} */}
             <VideoCardLayout
               timeAgo={timeAgo}
               viewsText={viewsText}
@@ -47,7 +45,7 @@ export function GeneralSettingsOverviewLayout({
               titleNameContainerStyles={{ paddingLeft: 0 }}
             />
           </ScrollView>
-        </View>
+        </View> */}
 
         <View style={GSOLStyles.generalSettings}>
           <Text style={GSOLStyles.generalText}>General</Text>

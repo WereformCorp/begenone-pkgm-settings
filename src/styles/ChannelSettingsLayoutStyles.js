@@ -39,6 +39,7 @@ export const ChannelSettingsLayoutStyles = StyleSheet.create({
     backgroundColor: "#202020",
     marginTop: 24,
     width: "auto",
+    // height: 40,
     marginRight: 36,
     marginLeft: 36,
   },
@@ -49,6 +50,13 @@ export const ChannelSettingsLayoutStyles = StyleSheet.create({
     color: "white",
     paddingTop: 12,
   },
+
+  inputField: {
+    minHeight: 40,
+    color: "white",
+    // paddingTop: 12,
+  },
+
   buttonSection: {
     flex: 1,
     justifyContent: "flex-end",

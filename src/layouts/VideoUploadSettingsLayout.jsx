@@ -29,6 +29,7 @@ export function VideoUploadSettingsLayout({
   profilePic,
   userName,
   onPressWireUploadScreen,
+  onPressVideoUploadAsync,
 }) {
   // Local state for raw video URI (Android-only used in UI)
   const [imageAndroid, setImageAndroid] = useState(null);
@@ -277,7 +278,8 @@ export function VideoUploadSettingsLayout({
               />
             }
           />
-          <DropDown
+          <>
+            {/* <DropDown
             styles={{
               marginTop: 18,
             }}
@@ -297,7 +299,8 @@ export function VideoUploadSettingsLayout({
               { key: 1, label: "Turn — ON" },
               { key: 2, label: "Turn — OFF" },
             ]}
-          />
+          /> */}
+          </>
 
           <View
             style={{
@@ -317,14 +320,16 @@ export function VideoUploadSettingsLayout({
                 marginRight: 6,
               }}
               textColor={"#fff"}
+              onPressVideoUploadAsync={onPressVideoUploadAsync}
             />
             <CustomizedButton
               label={"Schedule"}
               style={{
-                backgroundColor: "#7f7f7f",
+                backgroundColor: "#242424",
                 marginLeft: 6,
               }}
-              textColor={"#fff"}
+              isDisabled={true}
+              textColor={"#7f7f7f"}
             />
           </View>
         </View>
