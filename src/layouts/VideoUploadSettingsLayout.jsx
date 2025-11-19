@@ -31,13 +31,14 @@ export function VideoUploadSettingsLayout({
   onPressWireUploadScreen,
   onPressVideoUploadAsync,
 }) {
+  const [videoAssets, setVideoAssets] = useState(null);
   // Local state for raw video URI (Android-only used in UI)
   const [imageAndroid, setImageAndroid] = useState(null);
-
   // Local state for generated thumbnail image (iOS + Android)
   const [videoThumbnail, setThumbnailIOS] = useState(null);
-
   const [imageThumb, setImageThumb] = useState(null);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   /**
    * generateThumbnail
@@ -76,11 +77,18 @@ export function VideoUploadSettingsLayout({
       quality: 1,
     });
 
-    console.log("Picker result:", result);
-
     // Exit if user cancels the selection
     if (!result.canceled) {
       const videoUri = result.assets[0].uri;
+      const videoAsset = result.assets[0];
+      // const videoUri = videoAsset.uri;
+
+      console.log("Picker result:", result);
+
+      if (videoAsset.fileSize > 30 * 1024 * 1024) {
+        alert("Video too large for upload. Please select a video under 25MB.");
+        return; // Stop the flow immediately
+      }
 
       // Save raw video URI
       setImageAndroid(videoUri);
@@ -88,6 +96,8 @@ export function VideoUploadSettingsLayout({
       // Generate & store thumbnail
       const thumbUri = await generateThumbnail(videoUri);
       setThumbnailIOS(thumbUri);
+
+      setVideoAssets(result.assets);
     }
   };
 
@@ -119,6 +129,8 @@ export function VideoUploadSettingsLayout({
    */
   const displayVideoSource =
     Platform.OS === "ios" ? videoThumbnail : imageAndroid;
+
+  // ///////////////////////////
 
   return (
     <ScrollView>
@@ -259,6 +271,7 @@ export function VideoUploadSettingsLayout({
                 style={{ opacity: 0.3 }}
               />
             }
+            onChangeText={text => setTitle(text)}
           />
           <InputField
             placeholder={"Enter Description"}
@@ -277,6 +290,7 @@ export function VideoUploadSettingsLayout({
                 style={{ opacity: 0.3 }}
               />
             }
+            onChangeText={text => setDescription(text)}
           />
           <>
             {/* <DropDown
@@ -320,7 +334,16 @@ export function VideoUploadSettingsLayout({
                 marginRight: 6,
               }}
               textColor={"#fff"}
-              onPressVideoUploadAsync={onPressVideoUploadAsync}
+              onPress={() => {
+                onPressVideoUploadAsync({
+                  title,
+                  description,
+                  videoFile: videoAssets?.[0] || null,
+                  videoUri: imageAndroid,
+                  thumbUri: imageThumb,
+                  generatedThumb: videoThumbnail,
+                });
+              }}
             />
             <CustomizedButton
               label={"Schedule"}
