@@ -69,7 +69,7 @@ export function GeneralSettingsOverviewLayout({
               customIcon={<Ionicons name="person" size={18} color="#fff" />}
               onPress={onPressUserSettings}
             />
-            <CustomizedButton
+            {/* <CustomizedButton
               label={"Channel Settings"}
               style={customStyles.customButton}
               customIcon={<Ionicons name="people" size={18} color="#fff" />}
@@ -80,7 +80,7 @@ export function GeneralSettingsOverviewLayout({
               style={customStyles.customButton}
               customIcon={<Ionicons name="cash" size={18} color="#fff" />}
               onPress={onPressPricings}
-            />
+            /> */}
           </View>
         </View>
       </View>

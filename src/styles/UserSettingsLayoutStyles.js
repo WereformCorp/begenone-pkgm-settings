@@ -43,11 +43,12 @@ export const UserSettingsLayoutStyles = StyleSheet.create({
   },
 
   headingText: {
-    fontSize: 24,
+    fontSize: 36,
     color: "#fff",
-    paddingLeft: 36,
+    // paddingLeft: 36,
     marginTop: 24,
     fontWeight: "800",
+    textAlign: "center",
   },
 
   inputWrapper: {
@@ -72,7 +73,7 @@ export const UserSettingsLayoutStyles = StyleSheet.create({
   buttonSection: {
     flex: 1,
     justifyContent: "flex-end",
-    marginTop: 84,
+    marginTop: 48,
     marginBottom: 120,
 
     // borderTopWidth: 1,

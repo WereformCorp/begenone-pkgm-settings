@@ -17,6 +17,7 @@ export function UserSettingsLayout({
   profilePic,
   onPressChannelSettingsText,
   onPressUserSignoutFunction,
+  onPressUserUpdateDetailsFunction,
 }) {
   const inputFields = [
     { id: "Full Name" },
@@ -61,16 +62,16 @@ export function UserSettingsLayout({
             {userName || "Default Username"}
           </Text>
           <TouchableOpacity onPress={onPressChannelSettingsText}>
-            <Text style={UserSettingsLayoutStyles.channelSettingsText}>
+            {/* <Text style={UserSettingsLayoutStyles.channelSettingsText}>
               {"Channel Settings —>"}
-            </Text>
+            </Text> */}
           </TouchableOpacity>
         </View>
       </View>
 
       <View style={UserSettingsLayoutStyles.inputFieldsContainer}>
         <Text style={UserSettingsLayoutStyles.headingText}>User Settings</Text>
-        {inputFields.map(inputField => (
+        {/* {inputFields.map(inputField => (
           <InputField
             key={inputField.id}
             inputWrapper={UserSettingsLayoutStyles.inputWrapper}
@@ -84,7 +85,7 @@ export function UserSettingsLayout({
             onChangeText={text => handleChange(inputField.id, text)} // dynamic handler
             multiline={inputField.id.toLowerCase() === "about"}
           />
-        ))}
+        ))} */}
 
         {/* <InputField
           inputWrapper={UserSettingsLayoutStyles.inputWrapper}
@@ -106,6 +107,7 @@ export function UserSettingsLayout({
             textColor="#fff"
             fontWeight={"600"}
             style={UserSettingsLayoutStyles.dualButton1}
+            onPress={() => onPressUserUpdateDetailsFunction(formData)}
           />
           <CustomizedButton
             label={"Logout"}

@@ -185,14 +185,14 @@ export function VideoUploadSettingsLayout({
             >
               Create <Text style={{ color: "#ff6000" }}>Video</Text>
             </Text>
-            {/* <TouchableOpacity
+            <TouchableOpacity
               style={VUSLStyles.postWireTextContainer}
               onPress={onPressWireUploadScreen}
             >
               <Text style={{ color: "#fff" }}>
                 Post a <Text style={{ color: "#ff6600" }}>Wire</Text>
               </Text>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
           </View>
 
           <TouchableOpacity
