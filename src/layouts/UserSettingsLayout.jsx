@@ -7,9 +7,8 @@ import {
   Linking,
 } from "react-native";
 
-import { CustomizedButton, InputField } from "@begenone/pkgm-shared";
+import { CustomizedButton } from "@begenone/pkgm-shared";
 import { UserSettingsLayoutStyles } from "../styles/UserSettingsLayoutStyles";
-import { Platform } from "react-native";
 import { useState } from "react";
 
 export function UserSettingsLayout({

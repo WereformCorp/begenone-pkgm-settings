@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   View,
   Linking,
-  StyleSheet,
   Platform,
   ScrollView,
 } from "react-native";
@@ -14,7 +13,7 @@ import { VUSLStyles } from "../styles/VUSLStyles";
 import * as ImagePicker from "expo-image-picker";
 import * as VideoThumbnails from "expo-video-thumbnails";
 import { Ionicons } from "@expo/vector-icons";
-import { CustomizedButton, DropDown, InputField } from "@begenone/pkgm-shared";
+import { CustomizedButton, InputField } from "@begenone/pkgm-shared";
 
 /**
  * VideoUploadSettingsLayout
