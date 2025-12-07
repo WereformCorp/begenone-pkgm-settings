@@ -122,7 +122,7 @@ export const ChannelSettingsLayoutStyles = StyleSheet.create({
     // marginLeft: 36,
   },
   dualButton2: {
-    backgroundColor: globalStyles.colors.colorPrimary200,
+    backgroundColor: "rgba(255, 22, 22, 1)",
     flex: 1,
     width: "auto",
     minWidth: 60,

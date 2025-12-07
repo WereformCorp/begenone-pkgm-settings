@@ -17,12 +17,9 @@ export function ChannelSettingsLayout({
   userName,
   profilePic,
   onPressUserSettingsText,
+  onPressChannelUpdate,
 }) {
-  const inputFields = [
-    { id: "Channel Name" },
-    { id: "Channel Id" },
-    { id: "About" },
-  ];
+  const inputFields = [{ id: "name" }, { id: "username" }, { id: "about" }];
 
   const navigationButtons = [
     { id: "All Videos" },
@@ -31,11 +28,9 @@ export function ChannelSettingsLayout({
   ];
 
   // ✅ Use one state object to hold all input values
-  const [formData, setFormData] = useState({
-    "Full Name": "",
-    Username: "",
-    About: "",
-  });
+  const [formData, setFormData] = useState({});
+
+  // console.log(`Form Data from Channel Settings Layout: `, formData);
 
   const handleChange = (fieldId, value) => {
     setFormData(prev => ({
@@ -45,6 +40,16 @@ export function ChannelSettingsLayout({
 
     console.log(`Changed [${fieldId}]:`, value);
   };
+
+  function handleChannelUpdate() {
+    console.log(`Formdata: `, formData);
+
+    onPressChannelUpdate({
+      name: formData.name,
+      username: formData.username,
+      about: formData.about,
+    });
+  }
 
   const categoriesData = [
     {
@@ -126,22 +131,23 @@ export function ChannelSettingsLayout({
       </View> */}
 
       <View style={ChannelSettingsLayoutStyles.buttonSection}>
-        {/* <CustomizedButton
+        <CustomizedButton
           label={"Upgrade"}
           textColor="#ff6600"
           style={ChannelSettingsLayoutStyles.singleButton}
-        /> */}
+        />
         <View style={ChannelSettingsLayoutStyles.dualButtonRow}>
           <CustomizedButton
             label={"Save"}
             textColor="#fff"
             fontWeight={"600"}
             style={ChannelSettingsLayoutStyles.dualButton1}
+            onPress={handleChannelUpdate}
           />
           <CustomizedButton
-            label={"Schedule"}
-            textColor="grey"
-            fontWeight={"600"}
+            label={"Delete"}
+            textColor="white"
+            fontWeight={"900"}
             style={ChannelSettingsLayoutStyles.dualButton2}
           />
         </View>

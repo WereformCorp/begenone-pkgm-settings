@@ -7,7 +7,7 @@ import {
   Linking,
 } from "react-native";
 
-import { CustomizedButton } from "@begenone/pkgm-shared";
+import { CustomizedButton, InputField } from "@begenone/pkgm-shared";
 import { UserSettingsLayoutStyles } from "../styles/UserSettingsLayoutStyles";
 import { useState } from "react";
 
@@ -61,16 +61,16 @@ export function UserSettingsLayout({
             {userName || "Default Username"}
           </Text>
           <TouchableOpacity onPress={onPressChannelSettingsText}>
-            {/* <Text style={UserSettingsLayoutStyles.channelSettingsText}>
+            <Text style={UserSettingsLayoutStyles.channelSettingsText}>
               {"Channel Settings —>"}
-            </Text> */}
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
 
       <View style={UserSettingsLayoutStyles.inputFieldsContainer}>
         <Text style={UserSettingsLayoutStyles.headingText}>User Settings</Text>
-        {/* {inputFields.map(inputField => (
+        {inputFields.map(inputField => (
           <InputField
             key={inputField.id}
             inputWrapper={UserSettingsLayoutStyles.inputWrapper}
@@ -84,22 +84,22 @@ export function UserSettingsLayout({
             onChangeText={text => handleChange(inputField.id, text)} // dynamic handler
             multiline={inputField.id.toLowerCase() === "about"}
           />
-        ))} */}
+        ))}
 
-        {/* <InputField
+        <InputField
           inputWrapper={UserSettingsLayoutStyles.inputWrapper}
           multiline={true}
           inputStyle={UserSettingsLayoutStyles.aboutTextArea}
           placeholder={"About"}
-        /> */}
+        />
       </View>
 
       <View style={UserSettingsLayoutStyles.buttonSection}>
-        {/* <CustomizedButton
+        <CustomizedButton
           label={"Upgrade"}
           textColor="#ff6600"
           style={UserSettingsLayoutStyles.singleButton}
-        /> */}
+        />
         <View style={UserSettingsLayoutStyles.dualButtonRow}>
           <CustomizedButton
             label={"Save"}

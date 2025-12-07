@@ -18,7 +18,7 @@ export function GeneralSettingsOverviewLayout({
   return (
     <ScrollView style={GSOLStyles.container}>
       <View style={GSOLStyles.secondaryContainer}>
-        {/* <View style={GSOLStyles.historyContainer}>
+        <View style={GSOLStyles.historyContainer}>
           <Text style={GSOLStyles.historyText}>History</Text>
           <ScrollView
             horizontal={true}
@@ -45,13 +45,13 @@ export function GeneralSettingsOverviewLayout({
               titleNameContainerStyles={{ paddingLeft: 0 }}
             />
           </ScrollView>
-        </View> */}
+        </View>
 
         <View style={GSOLStyles.generalSettings}>
           <Text style={GSOLStyles.generalText}>General</Text>
 
           <View style={GSOLStyles.settingsButtonContainer}>
-            {/* <CustomizedButton
+            <CustomizedButton
               label={"Likes"}
               style={customStyles.customButton}
               customIcon={<Ionicons name="thumbs-up" size={18} color="#fff" />}
@@ -62,14 +62,14 @@ export function GeneralSettingsOverviewLayout({
               customIcon={
                 <Ionicons name="thumbs-down" size={18} color="#fff" />
               }
-            /> */}
+            />
             <CustomizedButton
               label={"User Settings"}
               style={customStyles.customButton}
               customIcon={<Ionicons name="person" size={18} color="#fff" />}
               onPress={onPressUserSettings}
             />
-            {/* <CustomizedButton
+            <CustomizedButton
               label={"Channel Settings"}
               style={customStyles.customButton}
               customIcon={<Ionicons name="people" size={18} color="#fff" />}
@@ -80,7 +80,7 @@ export function GeneralSettingsOverviewLayout({
               style={customStyles.customButton}
               customIcon={<Ionicons name="cash" size={18} color="#fff" />}
               onPress={onPressPricings}
-            /> */}
+            />
           </View>
         </View>
       </View>
