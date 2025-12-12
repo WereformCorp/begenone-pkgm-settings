@@ -17,7 +17,8 @@ export function ChannelSettingsLayout({
   userName,
   profilePic,
   onPressUserSettingsText,
-  onPressChannelUpdate,
+  handleChannelUpdateCreate,
+  channelExist,
 }) {
   const inputFields = [{ id: "name" }, { id: "username" }, { id: "about" }];
 
@@ -44,7 +45,7 @@ export function ChannelSettingsLayout({
   function handleChannelUpdate() {
     console.log(`Formdata: `, formData);
 
-    onPressChannelUpdate({
+    handleChannelUpdateCreate({
       name: formData.name,
       username: formData.username,
       about: formData.about,
@@ -136,20 +137,27 @@ export function ChannelSettingsLayout({
           textColor="#ff6600"
           style={ChannelSettingsLayoutStyles.singleButton}
         />
+
         <View style={ChannelSettingsLayoutStyles.dualButtonRow}>
           <CustomizedButton
-            label={"Save"}
+            label={channelExist ? "Save" : "Create"}
             textColor="#fff"
             fontWeight={"600"}
-            style={ChannelSettingsLayoutStyles.dualButton1}
+            style={[
+              ChannelSettingsLayoutStyles.dualButton1,
+              !channelExist && { maxWidth: "150px" },
+            ]}
             onPress={handleChannelUpdate}
           />
-          <CustomizedButton
-            label={"Delete"}
-            textColor="white"
-            fontWeight={"900"}
-            style={ChannelSettingsLayoutStyles.dualButton2}
-          />
+
+          {channelExist && (
+            <CustomizedButton
+              label={"Delete"}
+              textColor="white"
+              fontWeight={"900"}
+              style={ChannelSettingsLayoutStyles.dualButton2}
+            />
+          )}
         </View>
       </View>
     </ScrollView>

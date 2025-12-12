@@ -1,11 +1,4 @@
-import {
-  ScrollView,
-  Image,
-  View,
-  Text,
-  TouchableOpacity,
-  Linking,
-} from "react-native";
+import { ScrollView, Image, View, Text, TouchableOpacity } from "react-native";
 
 import { CustomizedButton, InputField } from "@begenone/pkgm-shared";
 import { UserSettingsLayoutStyles } from "../styles/UserSettingsLayoutStyles";
@@ -85,13 +78,6 @@ export function UserSettingsLayout({
             multiline={inputField.id.toLowerCase() === "about"}
           />
         ))}
-
-        <InputField
-          inputWrapper={UserSettingsLayoutStyles.inputWrapper}
-          multiline={true}
-          inputStyle={UserSettingsLayoutStyles.aboutTextArea}
-          placeholder={"About"}
-        />
       </View>
 
       <View style={UserSettingsLayoutStyles.buttonSection}>

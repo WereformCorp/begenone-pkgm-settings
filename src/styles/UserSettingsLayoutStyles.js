@@ -53,7 +53,7 @@ export const UserSettingsLayoutStyles = StyleSheet.create({
 
   inputWrapper: {
     backgroundColor: "#202020",
-    marginTop: 24,
+    marginTop: 18,
     width: "auto",
     marginRight: 36,
     marginLeft: 36,
@@ -67,6 +67,7 @@ export const UserSettingsLayoutStyles = StyleSheet.create({
   },
 
   defaultInput: {
+    color: "#fff",
     height: 40,
   },
 

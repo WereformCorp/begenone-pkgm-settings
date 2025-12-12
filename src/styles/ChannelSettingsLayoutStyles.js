@@ -52,7 +52,7 @@ export const ChannelSettingsLayoutStyles = StyleSheet.create({
 
   inputWrapper: {
     backgroundColor: "#202020",
-    marginTop: 24,
+    marginTop: 18,
     width: "auto",
     // height: 40,
     marginRight: 36,
