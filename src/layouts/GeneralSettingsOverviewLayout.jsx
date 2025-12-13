@@ -1,4 +1,4 @@
-import { CustomizedButton } from "@begenone/pkgm-shared";
+import { CustomizedButton } from "@wereform/pkgm-shared";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { VideoCardLayout } from "../../../begenone-pkgm-video";
 import { GSOLStyles } from "../styles/GSOLStyles";

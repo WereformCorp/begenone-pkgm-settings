@@ -7,7 +7,7 @@ import {
   Linking,
 } from "react-native";
 
-import { CustomizedButton, DropDown, InputField } from "@begenone/pkgm-shared";
+import { CustomizedButton, DropDown, InputField } from "@wereform/pkgm-shared";
 import { ChannelSettingsLayoutStyles } from "../styles/ChannelSettingsLayoutStyles";
 import { Platform } from "react-native";
 import { useState } from "react";
