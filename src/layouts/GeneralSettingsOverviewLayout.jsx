@@ -1,6 +1,6 @@
 import { CustomizedButton } from "@wereform/pkgm-shared";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { VideoCardLayout } from "../../../begenone-pkgm-video";
+import { VideoCardLayout } from "@wereform/pkgm-video";
 import { GSOLStyles } from "../styles/GSOLStyles";
 import { Ionicons } from "@expo/vector-icons";
 

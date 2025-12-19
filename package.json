@@ -1,6 +1,6 @@
 {
   "name": "@wereform/pkgm-settings",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "files": [
     "dist",
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@wereform/pkgm-shared": "^1.0.2",
+    "@wereform/pkgm-video": "^1.0.2",
     "expo-image-picker": "^17.0.8",
     "expo-video-thumbnails": "^10.0.7",
     "install": "^0.13.0"
