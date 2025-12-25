@@ -14,37 +14,22 @@ export function GeneralSettingsOverviewLayout({
   onPressUserSettings,
   onPressChannelSettings,
   onPressPricings,
+  showHistory,
 }) {
   return (
     <ScrollView style={GSOLStyles.container}>
       <View style={GSOLStyles.secondaryContainer}>
         <View style={GSOLStyles.historyContainer}>
-          {/* <Text style={GSOLStyles.historyText}>History</Text> */}
-          {/* <ScrollView
-            horizontal={true}
-            style={GSOLStyles.videoCardLayoutContainer}
-          >
-            <VideoCardLayout
+          {showHistory && (
+            <HistoryContainer
               timeAgo={timeAgo}
               viewsText={viewsText}
               titleText={titleText}
               userNameText={userNameText}
               contentThumbUrl={contentThumbUrl}
               channelLogo={channelLogo}
-              //
-              //
-              //
-              // STYLE SETTINGS HERE!!!
-              containerStyles={{ width: 200, marginBottom: 20 }}
-              dateViewsContainerStyle={{ display: "none" }}
-              userImageStyles={{ display: "none" }}
-              titleTextStyles={{ fontSize: 16, lineHeight: 22 }}
-              userNameTextStyles={{ display: "none" }}
-              customMetaDataStyles={{}}
-              thumbnailImageStyles={{}}
-              titleNameContainerStyles={{ paddingLeft: 0 }}
             />
-          </ScrollView> */}
+          )}
         </View>
 
         <View style={GSOLStyles.generalSettings}>
