@@ -1,7 +1,7 @@
 {
   "name": "@wereform/pkgm-settings",
-  "version": "1.0.4",
-  "source": "src/index.js",
+  "version": "1.0.5",
+  "source": "dist/index.js",
   "main": "dist/index.js",
   "react-native": "src/index.js",
   "files": [
