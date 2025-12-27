@@ -29,6 +29,7 @@ export function VideoUploadSettingsLayout({
   userName,
   onPressWireUploadScreen,
   onPressVideoUploadAsync,
+  postVideo,
 }) {
   const [videoAssets, setVideoAssets] = useState(null);
   // Local state for raw video URI (Android-only used in UI)
@@ -327,13 +328,15 @@ export function VideoUploadSettingsLayout({
             }}
           >
             <CustomizedButton
-              label={"Post Video"}
+              label={postVideo === true ? "Posting..." : "Post Video"}
               style={{
                 backgroundColor: "#ff6000",
                 marginRight: 6,
               }}
               textColor={"#fff"}
               onPress={() => {
+                if (postVideo) return;
+
                 onPressVideoUploadAsync({
                   title,
                   description,
