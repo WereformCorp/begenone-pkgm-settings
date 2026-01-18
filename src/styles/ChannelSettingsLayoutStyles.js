@@ -1,16 +1,18 @@
 import { StyleSheet } from "react-native";
 import { globalStyles } from "./globalStyles";
 
+/* Channel settings screen layout styles */
 export const ChannelSettingsLayoutStyles = StyleSheet.create({
   container: {
-    flex: 1, // or your desired background
+    // Root screen container
+    flex: 1,
     paddingVertical: 24,
   },
+
   profileSection: {
+    // Channel profile header section
     flexDirection: "row",
     alignItems: "center",
-    // paddingHorizontal: 36,
-
     borderBottomWidth: 1,
     paddingTop: 18,
     paddingBottom: 18,
@@ -18,31 +20,42 @@ export const ChannelSettingsLayoutStyles = StyleSheet.create({
     marginRight: 36,
     borderColor: globalStyles.colors.colorPrimary450,
   },
+
   userImage: {
+    // Channel avatar image
     width: 60,
     height: 60,
     borderRadius: 12,
     marginRight: 16,
   },
+
   userInfo: {
+    // Username and settings info stack
     flexDirection: "column",
     justifyContent: "center",
   },
+
   userName: {
+    // Channel display name
     color: "white",
     fontSize: 18,
     fontWeight: "600",
   },
+
   channelSettingsText: {
+    // Channel settings helper text
     color: "#ff6600",
     marginTop: 4,
   },
+
   inputFieldsContainer: {
+    // Wrapper for editable fields
     flexGrow: 1,
     justifyContent: "flex-start",
   },
 
   headingText: {
+    // Section heading text
     fontSize: 24,
     color: "#fff",
     paddingLeft: 36,
@@ -51,15 +64,16 @@ export const ChannelSettingsLayoutStyles = StyleSheet.create({
   },
 
   inputWrapper: {
+    // Input field container
     backgroundColor: "#202020",
     marginTop: 18,
     width: "auto",
-    // height: 40,
     marginRight: 36,
     marginLeft: 36,
   },
 
   aboutTextArea: {
+    // Multiline about input
     textAlignVertical: "top",
     minHeight: 120,
     color: "white",
@@ -67,19 +81,17 @@ export const ChannelSettingsLayoutStyles = StyleSheet.create({
   },
 
   inputField: {
+    // Single-line input field
     minHeight: 40,
     color: "white",
-    // paddingTop: 12,
   },
 
   buttonSection: {
+    // Primary action button section
     flex: 1,
     justifyContent: "flex-end",
     marginTop: 84,
     marginBottom: 120,
-
-    // borderTopWidth: 1,
-    // borderColor: globalStyles.colors.colorPrimary400,
     marginRight: 36,
     marginLeft: 36,
     padding: 18,
@@ -88,6 +100,7 @@ export const ChannelSettingsLayoutStyles = StyleSheet.create({
   },
 
   navigationBtns: {
+    // Secondary navigation buttons container
     width: "auto",
     marginRight: 36,
     marginLeft: 36,
@@ -98,19 +111,22 @@ export const ChannelSettingsLayoutStyles = StyleSheet.create({
   },
 
   singleButton: {
+    // Single full-width action button
     backgroundColor: "#252525",
     width: "auto",
     marginBottom: 12,
   },
+
   dualButtonRow: {
+    // Row for paired action buttons
     flexDirection: "row",
     justifyContent: "space-between",
     width: "auto",
     flex: 1,
-    // marginRight: 36,
-    // marginLeft: 36,
   },
+
   dualButton1: {
+    // Primary action button
     backgroundColor: globalStyles.colors.colorPrimary600,
     flex: 1,
     minWidth: 60,
@@ -118,17 +134,15 @@ export const ChannelSettingsLayoutStyles = StyleSheet.create({
     maxWidth: 150,
     marginRight: 4,
     color: "#fff",
-    // marginRight: 36,
-    // marginLeft: 36,
   },
+
   dualButton2: {
+    // Destructive / secondary action button
     backgroundColor: "rgba(255, 22, 22, 1)",
     flex: 1,
     width: "auto",
     minWidth: 60,
     maxWidth: 150,
     marginLeft: 4,
-    // marginRight: 36,
-    // marginLeft: 36,
   },
 });
