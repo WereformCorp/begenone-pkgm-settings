@@ -4,6 +4,40 @@ import { CustomizedButton, InputField } from "@wereform/pkgm-shared";
 import { UserSettingsLayoutStyles } from "../styles/UserSettingsLayoutStyles";
 import { useState } from "react";
 
+/**
+ * UserSettingsLayout
+ *
+ * User-level settings screen for managing personal account details.
+ *
+ * Responsibilities:
+ * - Displays user profile metadata (avatar and username)
+ * - Provides controlled inputs for updating user information
+ * - Allows navigation to channel settings
+ * - Exposes account-level actions such as save, upgrade, and logout
+ *
+ * Props:
+ * - userName: string
+ *   Display name of the logged-in user.
+ *
+ * - profilePic: string (URL)
+ *   User profile image.
+ *
+ * - onPressChannelSettingsText: function
+ *   Navigates to the channel settings screen.
+ *
+ * - onPressUserSignoutFunction: function
+ *   Logs the user out of the application.
+ *
+ * - onPressUserUpdateDetailsFunction: function
+ *   Invoked with updated user form data when saving changes.
+ *
+ * Behavior:
+ * - Uses a single formData state object for all input fields
+ * - Dynamically renders inputs based on configuration
+ * - Supports multiline input for the "About" field
+ * - Keeps layout vertically scrollable and mobile-safe
+ */
+
 export function UserSettingsLayout({
   userName,
   profilePic,
