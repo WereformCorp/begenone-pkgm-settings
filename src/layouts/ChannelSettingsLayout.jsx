@@ -13,6 +13,39 @@ import { Platform } from "react-native";
 import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
+/**
+ * ChannelSettingsLayout
+ *
+ * Primary configuration screen for creating or updating a user channel.
+ *
+ * Responsibilities:
+ * - Displays channel profile metadata (name, avatar)
+ * - Provides controlled inputs for channel name, username, and about section
+ * - Handles both channel creation and update flows
+ * - Exposes upgrade and destructive actions conditionally
+ *
+ * Props:
+ * - userName: string
+ *   Display name of the channel.
+ *
+ * - profilePic: string (URL)
+ *   Channel avatar image.
+ *
+ * - onPressUserSettingsText: function
+ *   Navigates to user-level settings.
+ *
+ * - handleChannelUpdateCreate: function
+ *   Callback invoked with channel payload { name, username, about }.
+ *
+ * - channelExist: boolean
+ *   Determines whether the layout is in "create" or "edit" mode.
+ *
+ * Behavior:
+ * - Uses a single formData state object for all inputs
+ * - Dynamically renders input fields from configuration
+ * - Adjusts primary action labels based on channel existence
+ */
+
 export function ChannelSettingsLayout({
   userName,
   profilePic,

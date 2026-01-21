@@ -4,6 +4,42 @@ import { VideoCardLayout } from "@wereform/pkgm-video";
 import { GSOLStyles } from "../styles/GSOLStyles";
 import { Ionicons } from "@expo/vector-icons";
 
+/**
+ * GeneralSettingsOverviewLayout
+ *
+ * High-level entry screen for user and channel management.
+ *
+ * Responsibilities:
+ * - Optionally displays recent content history
+ * - Acts as a navigation hub for user and channel settings
+ * - Provides a clean, minimal overview of account-level actions
+ *
+ * Props:
+ * - timeAgo: string
+ * - viewsText: string | number
+ * - titleText: string
+ * - userNameText: string
+ * - contentThumbUrl: string (URL)
+ * - channelLogo: string (URL)
+ *   Metadata passed to HistoryContainer when enabled.
+ *
+ * - onPressUserSettings: function
+ *   Navigates to user settings screen.
+ *
+ * - onPressChannelSettings: function
+ *   Navigates to channel settings screen.
+ *
+ * - onPressPricings: function
+ *   Navigates to pricing or monetization screen.
+ *
+ * - showHistory: boolean
+ *   Toggles rendering of the history section.
+ *
+ * Behavior:
+ * - Renders only essential navigation actions
+ * - Keeps layout vertically scrollable and mobile-friendly
+ */
+
 export function GeneralSettingsOverviewLayout({
   timeAgo,
   viewsText,
