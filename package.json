@@ -1,6 +1,6 @@
 {
   "name": "@wereform/pkgm-settings",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "source": "dist/index.js",
   "main": "dist/index.js",
   "react-native": "dist/index.js",
@@ -22,7 +22,7 @@
     "react-native": "*"
   },
   "dependencies": {
-    "@wereform/pkgm-shared": "^1.0.6",
+    "@wereform/pkgm-shared": "^1.0.7",
     "@wereform/pkgm-video": "1.0.10",
     "expo-image-picker": "^17.0.8",
     "expo-video-thumbnails": "^10.0.7",
