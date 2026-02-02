@@ -1,9 +1,9 @@
 {
   "name": "@wereform/pkgm-settings",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "source": "dist/index.js",
   "main": "dist/index.js",
-  "react-native": "src/index.js",
+  "react-native": "dist/index.js",
   "files": [
     "dist",
     "src",
@@ -22,8 +22,8 @@
     "react-native": "*"
   },
   "dependencies": {
-    "@wereform/pkgm-shared": "^1.0.2",
-    "@wereform/pkgm-video": "^1.0.2",
+    "@wereform/pkgm-shared": "^1.0.6",
+    "@wereform/pkgm-video": "1.0.10",
     "expo-image-picker": "^17.0.8",
     "expo-video-thumbnails": "^10.0.7",
     "install": "^0.13.0"
