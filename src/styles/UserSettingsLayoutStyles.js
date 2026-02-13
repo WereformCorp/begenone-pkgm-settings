@@ -1,137 +1,143 @@
 import { StyleSheet } from "react-native";
-import { globalStyles } from "./globalStyles";
 
-/* User settings screen layout styles */
+const COLORS = {
+  bgBase: "#080808",
+  bgFormCard: "#121212",
+  bgInput: "#1C1C1C",
+  textPrimary: "#fff",
+  textMuted: "rgba(255,255,255,0.55)",
+  accent: "#ff5e00",
+  avatarRing: "rgba(255,255,255,0.1)",
+  danger: "rgba(220, 80, 80, 0.9)",
+  border: "rgba(255,255,255,0.06)",
+  borderInput: "rgba(255,255,255,0.04)",
+};
+
+const SPACING = {
+  section: 24,
+  block: 16,
+  small: 12,
+};
+
 export const UserSettingsLayoutStyles = StyleSheet.create({
-  container: {
-    // Root screen container
+  scroll: {
     flex: 1,
-    paddingVertical: 24,
+    backgroundColor: COLORS.bgBase,
+  },
+
+  content: {
+    paddingHorizontal: 16,
+    paddingTop: SPACING.section,
+    paddingBottom: 120,
   },
 
   profileSection: {
-    // User profile header section
-    flexDirection: "row",
     alignItems: "center",
-    borderBottomWidth: 1,
-    paddingTop: 18,
-    paddingBottom: 18,
-    marginLeft: 36,
-    marginRight: 36,
-    borderColor: globalStyles.colors.colorPrimary450,
+    marginBottom: SPACING.section,
   },
 
-  userImage: {
-    // User avatar image
-    width: 60,
-    height: 60,
-    borderRadius: 12,
-    marginRight: 16,
+  avatarWrapper: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    padding: 3,
+    backgroundColor: COLORS.avatarRing,
+    marginBottom: SPACING.block,
   },
 
-  userInfo: {
-    // User identity info stack
-    flexDirection: "column",
-    justifyContent: "center",
+  avatar: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 37,
   },
 
   userName: {
-    // Username display
-    color: "white",
+    color: COLORS.textPrimary,
     fontSize: 18,
-    fontWeight: "600",
+    fontWeight: "700",
+    marginBottom: 4,
   },
 
-  channelSettingsText: {
-    // Link to channel settings
-    color: "#ff6600",
+  channelSettingsWrap: {
     marginTop: 4,
   },
 
-  inputFieldsContainer: {
-    // Editable fields container
-    flexGrow: 1,
-    justifyContent: "flex-start",
+  channelSettingsText: {
+    color: COLORS.accent,
+    fontSize: 14,
   },
 
-  headingText: {
-    // Page heading text
-    fontSize: 36,
-    color: "#fff",
-    marginTop: 24,
-    fontWeight: "800",
-    textAlign: "center",
+  formSection: {
+    marginBottom: SPACING.section,
+  },
+
+  formCard: {
+    backgroundColor: COLORS.bgFormCard,
+    borderRadius: 12,
+    padding: SPACING.block,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+  },
+
+  sectionHeading: {
+    color: COLORS.textMuted,
+    fontSize: 11,
+    fontWeight: "500",
+    marginBottom: SPACING.block,
+    letterSpacing: 2,
   },
 
   inputWrapper: {
-    // Input field wrapper
-    backgroundColor: "#202020",
-    marginTop: 18,
-    width: "auto",
-    marginRight: 36,
-    marginLeft: 36,
+    backgroundColor: COLORS.bgInput,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: COLORS.borderInput,
+    marginBottom: SPACING.small,
   },
 
-  aboutTextArea: {
-    // Multiline input field
-    textAlignVertical: "top",
-    minHeight: 120,
-    color: "white",
-    paddingTop: 12,
+  inputWrapperLast: {
+    marginBottom: 0,
   },
 
   defaultInput: {
-    // Default text input
-    color: "#fff",
-    height: 40,
+    color: COLORS.textPrimary,
+    height: 44,
+    paddingHorizontal: 14,
   },
 
-  buttonSection: {
-    // Bottom action button section
-    flex: 1,
-    justifyContent: "flex-end",
-    marginTop: 48,
-    marginBottom: 120,
-    marginRight: 36,
-    marginLeft: 36,
-    padding: 18,
-    backgroundColor: globalStyles.colors.colorPrimary350,
-    borderRadius: 12,
+  aboutInput: {
+    color: COLORS.textPrimary,
+    minHeight: 100,
+    paddingHorizontal: 14,
+    paddingTop: 12,
+    paddingBottom: 12,
+    textAlignVertical: "top",
   },
 
-  singleButton: {
-    // Single full-width button
-    backgroundColor: "#252525",
-    width: "auto",
-    marginBottom: 12,
+  actionSection: {
+    gap: SPACING.small,
+  },
+
+  upgradeButton: {
+    backgroundColor: "transparent",
+    borderWidth: 1,
+    borderColor: COLORS.accent,
+  },
+
+  saveButton: {
+    backgroundColor: COLORS.accent,
+  },
+
+  logoutButton: {
+    backgroundColor: COLORS.danger,
   },
 
   dualButtonRow: {
-    // Row for paired action buttons
     flexDirection: "row",
-    justifyContent: "space-between",
-    width: "auto",
-    flex: 1,
+    gap: SPACING.small,
   },
 
-  dualButton1: {
-    // Primary action button
-    backgroundColor: globalStyles.colors.colorPrimary600,
+  dualButton: {
     flex: 1,
-    minWidth: 60,
-    width: "auto",
-    maxWidth: 150,
-    marginRight: 4,
-    color: "#fff",
-  },
-
-  dualButton2: {
-    // Destructive action button
-    backgroundColor: "#ff0000ff",
-    flex: 1,
-    width: "auto",
-    minWidth: 60,
-    maxWidth: 150,
-    marginLeft: 4,
   },
 });
