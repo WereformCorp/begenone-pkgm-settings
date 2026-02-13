@@ -1,138 +1,107 @@
-import { ScrollView, Image, View, Text, TouchableOpacity } from "react-native";
-
+import {
+  ScrollView,
+  Image,
+  View,
+  Text,
+  Pressable,
+} from "react-native";
 import { CustomizedButton, InputField } from "@wereform/pkgm-shared";
-import { UserSettingsLayoutStyles } from "../styles/UserSettingsLayoutStyles";
-import { useState } from "react";
+import { UserSettingsLayoutStyles as S } from "../styles/UserSettingsLayoutStyles";
+import { memo, useCallback, useState } from "react";
 
-/**
- * UserSettingsLayout
- *
- * User-level settings screen for managing personal account details.
- *
- * Responsibilities:
- * - Displays user profile metadata (avatar and username)
- * - Provides controlled inputs for updating user information
- * - Allows navigation to channel settings
- * - Exposes account-level actions such as save, upgrade, and logout
- *
- * Props:
- * - userName: string
- *   Display name of the logged-in user.
- *
- * - profilePic: string (URL)
- *   User profile image.
- *
- * - onPressChannelSettingsText: function
- *   Navigates to the channel settings screen.
- *
- * - onPressUserSignoutFunction: function
- *   Logs the user out of the application.
- *
- * - onPressUserUpdateDetailsFunction: function
- *   Invoked with updated user form data when saving changes.
- *
- * Behavior:
- * - Uses a single formData state object for all input fields
- * - Dynamically renders inputs based on configuration
- * - Supports multiline input for the "About" field
- * - Keeps layout vertically scrollable and mobile-safe
- */
+const DEFAULT_AVATAR =
+  "https://begenone-images.s3.us-east-1.amazonaws.com/default-user-photo.jpg";
 
-export function UserSettingsLayout({
+const INPUT_FIELDS = [
+  { id: "Full Name" },
+  { id: "Username" },
+  { id: "About" },
+];
+
+function UserSettingsLayoutComponent({
   userName,
   profilePic,
   onPressChannelSettingsText,
   onPressUserSignoutFunction,
   onPressUserUpdateDetailsFunction,
 }) {
-  const inputFields = [
-    { id: "Full Name" },
-    { id: "Username" },
-    { id: "About" },
-  ];
-
-  // ✅ Use one state object to hold all input values
   const [formData, setFormData] = useState({
     "Full Name": "",
     Username: "",
     About: "",
   });
 
-  const handleChange = (fieldId, value) => {
-    setFormData(prev => ({
-      ...prev,
-      [fieldId]: value,
-    }));
-
-    console.log(`Changed [${fieldId}]:`, value);
-  };
+  const handleChange = useCallback((fieldId, value) => {
+    setFormData(prev => ({ ...prev, [fieldId]: value }));
+  }, []);
 
   return (
     <ScrollView
-      style={UserSettingsLayoutStyles.container}
-      contentContainerStyle={{
-        justifyContent: "space-between", // keeps top/middle/bottom aligned
-      }}
+      style={S.scroll}
+      contentContainerStyle={S.content}
+      showsVerticalScrollIndicator={false}
     >
-      <View style={UserSettingsLayoutStyles.profileSection}>
-        <Image
-          source={{
-            uri:
-              profilePic ||
-              "https://begenone-images.s3.us-east-1.amazonaws.com/default-user-photo.jpg",
-          }}
-          style={UserSettingsLayoutStyles.userImage}
-        />
-        <View style={UserSettingsLayoutStyles.userInfo}>
-          <Text style={UserSettingsLayoutStyles.userName}>
-            {userName || "Default Username"}
-          </Text>
-          <TouchableOpacity onPress={onPressChannelSettingsText}>
-            <Text style={UserSettingsLayoutStyles.channelSettingsText}>
-              {"Channel Settings —>"}
-            </Text>
-          </TouchableOpacity>
+      <View style={S.profileSection}>
+        <View style={S.avatarWrapper}>
+          <Image
+            source={{ uri: profilePic || DEFAULT_AVATAR }}
+            style={S.avatar}
+            resizeMode="cover"
+          />
+        </View>
+        <Text style={S.userName}>{userName || "User"}</Text>
+        <Pressable
+          onPress={onPressChannelSettingsText}
+          style={S.channelSettingsWrap}
+        >
+          <Text style={S.channelSettingsText}>Channel Settings</Text>
+        </Pressable>
+      </View>
+
+      <View style={S.formSection}>
+        <Text style={S.sectionHeading}>ACCOUNT</Text>
+        <View style={S.formCard}>
+          {INPUT_FIELDS.map((field, idx) => (
+            <InputField
+              key={field.id}
+              inputWrapper={[
+                S.inputWrapper,
+                idx === INPUT_FIELDS.length - 1 && S.inputWrapperLast,
+              ]}
+              inputStyle={
+                field.id.toLowerCase() === "about"
+                  ? S.aboutInput
+                  : S.defaultInput
+              }
+              placeholder={field.id}
+              value={formData[field.id]}
+              onChangeText={text => handleChange(field.id, text)}
+              multiline={field.id.toLowerCase() === "about"}
+            />
+          ))}
         </View>
       </View>
 
-      <View style={UserSettingsLayoutStyles.inputFieldsContainer}>
-        <Text style={UserSettingsLayoutStyles.headingText}>User Settings</Text>
-        {inputFields.map(inputField => (
-          <InputField
-            key={inputField.id}
-            inputWrapper={UserSettingsLayoutStyles.inputWrapper}
-            inputStyle={
-              (inputField.id.toLowerCase() === "about" &&
-                UserSettingsLayoutStyles.aboutTextArea) ||
-              UserSettingsLayoutStyles.defaultInput
-            }
-            placeholder={inputField.id}
-            value={formData[inputField.id]} // controlled value
-            onChangeText={text => handleChange(inputField.id, text)} // dynamic handler
-            multiline={inputField.id.toLowerCase() === "about"}
-          />
-        ))}
-      </View>
-
-      <View style={UserSettingsLayoutStyles.buttonSection}>
+      <View style={S.actionSection}>
         <CustomizedButton
-          label={"Upgrade"}
-          textColor="#ff6600"
-          style={UserSettingsLayoutStyles.singleButton}
+          label="Upgrade"
+          textColor="#ff5e00"
+          style={S.upgradeButton}
+          onPress={() => {}}
         />
-        <View style={UserSettingsLayoutStyles.dualButtonRow}>
+        <View style={S.dualButtonRow}>
           <CustomizedButton
-            label={"Save"}
+            label="Save"
             textColor="#fff"
-            fontWeight={"600"}
-            style={UserSettingsLayoutStyles.dualButton1}
+            fontWeight="600"
+            style={[S.dualButton, S.saveButton]}
             onPress={() => onPressUserUpdateDetailsFunction(formData)}
           />
           <CustomizedButton
-            label={"Logout"}
+            label="Logout"
             textColor="#fff"
-            fontWeight={"600"}
-            style={UserSettingsLayoutStyles.dualButton2}
+            fontWeight="600"
+            style={[S.dualButton, S.logoutButton]}
             onPress={onPressUserSignoutFunction}
           />
         </View>
@@ -140,3 +109,5 @@ export function UserSettingsLayout({
     </ScrollView>
   );
 }
+
+export const UserSettingsLayout = memo(UserSettingsLayoutComponent);
