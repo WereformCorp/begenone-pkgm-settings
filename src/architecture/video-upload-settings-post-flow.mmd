@@ -1,0 +1,33 @@
+sequenceDiagram
+    autonumber
+    participant User
+    participant VUSL as VideoUploadSettingsLayout
+    participant ImagePicker as expo-image-picker
+    participant Thumbnails as expo-video-thumbnails
+    participant Parent
+
+    Parent->>VUSL: props (profilePic, userName, onPressWireUploadScreen, onPressVideoUploadAsync, postVideo)
+
+    User->>VUSL: tap "Pick Video"
+    VUSL->>ImagePicker: launchImageLibraryAsync(mediaTypes: videos)
+    ImagePicker-->>VUSL: result.assets (video URI)
+    VUSL->>VUSL: setVideoAssets, setImageAndroid(uri)
+    VUSL->>Thumbnails: getThumbnailAsync(uri, time: 1000)
+    Thumbnails-->>VUSL: thumbUri
+    VUSL->>VUSL: setThumbnailIOS(thumbUri)
+
+    User->>VUSL: tap "Pick Thumbnail" (optional)
+    VUSL->>ImagePicker: launchImageLibraryAsync(mediaTypes: images)
+    ImagePicker-->>VUSL: image asset
+    VUSL->>VUSL: setImageThumb
+
+    User->>VUSL: type title / description (InputField)
+    VUSL->>VUSL: setTitle, setDescription
+
+    User->>VUSL: tap "Post" / upload button
+    VUSL->>Parent: postVideo(...) or onPressVideoUploadAsync(...)
+
+    opt Wire upload entry
+        User->>VUSL: tap (Wire upload CTA)
+        VUSL->>Parent: onPressWireUploadScreen()
+    end
