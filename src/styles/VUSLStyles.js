@@ -1,96 +1,232 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
-/* Video upload and selection layout styles */
+const COLORS = {
+  bgBase: "#080808",
+  bgCard: "#121212",
+  bgInput: "#1C1C1C",
+  bgPicker: "#161616",
+  textPrimary: "#fff",
+  textMuted: "rgba(255,255,255,0.55)",
+  textHint: "rgba(255,255,255,0.3)",
+  accent: "#ff5e00",
+  border: "rgba(255,255,255,0.06)",
+};
+
 export const VUSLStyles = StyleSheet.create({
+  /* ── root ── */
+  scroll: {
+    flex: 1,
+    backgroundColor: COLORS.bgBase,
+  },
+
   container: {
-    // Bottom spacing for fixed UI
-    marginBottom: 120,
+    paddingBottom: 120,
   },
 
-  VUSLStyles: {
-    // Reserved placeholder
+  /* ── profile header ── */
+  profileSection: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    paddingTop: 20,
+    paddingBottom: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
   },
 
-  inputsContainer: {
-    // Input fields wrapper
-    marginRight: 24,
-    marginLeft: 24,
-    marginTop: 24,
+  avatarWrapper: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    overflow: "hidden",
+    marginRight: 12,
   },
 
-  inputFields: {
-    // Input field container
-    width: "auto",
-    backgroundColor: "#252525",
+  avatarImage: {
+    width: "100%",
+    height: "100%",
+  },
+
+  profileInfo: {
+    flex: 1,
+  },
+
+  profileName: {
+    color: COLORS.textPrimary,
+    fontSize: 15,
+    fontWeight: "700",
+  },
+
+  profileLink: {
+    color: COLORS.accent,
+    fontSize: 13,
+    fontWeight: "500",
+    marginTop: 2,
+  },
+
+  /* ── form area ── */
+  formArea: {
+    paddingHorizontal: 16,
+    paddingTop: 24,
+  },
+
+  /* heading row */
+  headingRow: {
+    flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 18,
-    paddingRight: 18,
+    alignItems: "center",
+    marginBottom: 20,
   },
 
-  postWireTextContainer: {
-    // Post action alignment container
-    width: "auto",
-    alignItems: "flex-end",
+  heading: {
+    color: COLORS.textPrimary,
+    fontSize: 22,
+    fontWeight: "800",
+    letterSpacing: 0.2,
+  },
+
+  headingAccent: {
+    color: COLORS.accent,
+  },
+
+  wireLink: {
+    paddingVertical: 6,
+    paddingHorizontal: 14,
+    borderRadius: 999,
+    backgroundColor: "rgba(255,255,255,0.06)",
+  },
+
+  wireLinkText: {
+    color: COLORS.textPrimary,
+    fontSize: 13,
+    fontWeight: "600",
+  },
+
+  wireLinkAccent: {
+    color: COLORS.accent,
+  },
+
+  /* ── section label ── */
+  sectionLabel: {
+    color: COLORS.textMuted,
+    fontSize: 11,
+    fontWeight: "600",
+    letterSpacing: 1.5,
+    textTransform: "uppercase",
+    marginBottom: 10,
+    marginTop: 4,
+  },
+
+  /* ── pickers ── */
+  pickerCard: {
+    backgroundColor: COLORS.bgPicker,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    marginBottom: 14,
+    overflow: "hidden",
+  },
+
+  thumbPicker: {
+    width: "100%",
+    height: 180,
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   videoPicker: {
-    // Video picker container
-    backgroundColor: "#262626",
-    borderRadius: 12,
-    marginTop: 16,
-    height: "auto",
-    width: "auto",
-    justifyContent: "center",
-  },
-
-  thumbContainer: {
-    // Video thumbnail preview container
     width: "100%",
-    height: 200,
-    borderRadius: 12,
-    overflow: "hidden",
+    height: 72,
     justifyContent: "center",
     alignItems: "center",
   },
 
-  videoContainer: {
-    // Compact video preview container
-    width: "100%",
-    height: 80,
-    borderRadius: 12,
-    overflow: "hidden",
-    justifyContent: "center",
+  pickerPreview: {
+    ...StyleSheet.absoluteFillObject,
+    opacity: 0.45,
+  },
+
+  pickerIconRow: {
+    flexDirection: "row",
     alignItems: "center",
+    gap: 8,
   },
 
-  image: {
-    // Background preview image
-    width: "100%",
-    height: "100%",
+  pickerLabel: {
+    color: COLORS.textMuted,
+    fontSize: 13,
+    fontWeight: "500",
+  },
+
+  pickerBadge: {
     position: "absolute",
-    opacity: 0.4,
-    backgroundColor: "#000",
+    top: 10,
+    right: 10,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: "rgba(0,0,0,0.45)",
+    alignItems: "center",
+    justifyContent: "center",
   },
 
-  iconCloud: {
-    // Centered cloud icon overlay
+  /* ── inputs ── */
+  inputOuter: {
+    position: "relative",
+    marginBottom: 14,
+  },
+
+  inputWrapper: {
+    backgroundColor: COLORS.bgInput,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    marginBottom: 0,
+  },
+
+  inputIconTopRight: {
     position: "absolute",
-    alignSelf: "center",
+    top: 14,
+    right: 14,
   },
 
-  icon: {
-    // Decorative overlay icon
-    position: "absolute",
-    alignSelf: "flex-end",
-    paddingTop: 24,
-    paddingRight: 24,
-    height: "100%",
-    opacity: 0.3,
+  titleInput: {
+    color: COLORS.textPrimary,
+    height: 48,
+    paddingHorizontal: 14,
+    paddingRight: 42,
   },
 
-  iconVideo: {
-    // Video icon modifier
-    height: "auto",
-    paddingTop: 0,
+  descInput: {
+    color: COLORS.textPrimary,
+    minHeight: 100,
+    paddingHorizontal: 14,
+    paddingRight: 42,
+    paddingTop: 12,
+    paddingBottom: 12,
+    textAlignVertical: "top",
+  },
+
+  /* ── action buttons ── */
+  actionRow: {
+    flexDirection: "row",
+    gap: 12,
+    marginTop: 32,
+  },
+
+  postButton: {
+    flex: 1,
+    backgroundColor: COLORS.accent,
+    borderRadius: 10,
+  },
+
+  scheduleButton: {
+    flex: 1,
+    backgroundColor: "rgba(255,255,255,0.06)",
+    borderRadius: 10,
+  },
+
+  scheduleButtonText: {
+    color: COLORS.textMuted,
   },
 });

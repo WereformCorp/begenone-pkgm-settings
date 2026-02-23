@@ -1,0 +1,110 @@
+%% begenone-pkgm-settings — Sequence Diagrams
+%% Mermaid.js format (.mmd) — use --- to separate multiple diagrams
+%% Layouts use pkgm-shared (InputField, CustomizedButton) and optional ImagePicker / VideoThumbnails
+
+%% 1. GENERAL SETTINGS OVERVIEW — Navigation hub flow
+sequenceDiagram
+    autonumber
+    participant Parent as Parent / Settings Screen
+    participant GSOL as GeneralSettingsOverviewLayout
+    participant History as HistoryContainer
+
+    Parent->>GSOL: props (onPressUserSettings, onPressChannelSettings, onPressPricings, showHistory)
+
+    GSOL->>GSOL: render Recent section (optional)
+    GSOL->>History: render HistoryContainer (timeAgo, titleText, etc.)
+
+    GSOL->>GSOL: render General > Account card (Likes, Dislikes, User Settings, Channel Settings, Pricings)
+
+    User->>GSOL: tap "User Settings"
+    GSOL->>Parent: onPressUserSettings()
+
+    User->>GSOL: tap "Channel Settings"
+    GSOL->>Parent: onPressChannelSettings()
+
+    User->>GSOL: tap "Pricings"
+    GSOL->>Parent: onPressPricings()
+
+---
+%% 2. CHANNEL SETTINGS LAYOUT — Form + Save/Create flow
+sequenceDiagram
+    autonumber
+    participant Parent
+    participant CSL as ChannelSettingsLayout
+    participant Shared as pkgm-shared (InputField, CustomizedButton)
+
+    Parent->>CSL: props (userName, profilePic, handleChannelUpdateCreate, channelExist, onPressUserSettingsText)
+
+    CSL->>CSL: useState formData (name, username, about)
+    CSL->>Shared: InputField (name, username, about) — handleChange(fieldId, value)
+    Shared->>CSL: onChangeText → setFormData
+
+    User->>CSL: tap "User Settings"
+    CSL->>Parent: onPressUserSettingsText()
+
+    User->>CSL: tap "Save" or "Create"
+    CSL->>CSL: handleChannelUpdate()
+    CSL->>Parent: handleChannelUpdateCreate({ name, username, about })
+
+    opt channelExist
+        User->>CSL: tap "Delete"
+        CSL->>Parent: (onPress delete — wired by parent)
+    end
+
+---
+%% 3. USER SETTINGS LAYOUT — Form + Update/Signout flow
+sequenceDiagram
+    autonumber
+    participant Parent
+    participant USL as UserSettingsLayout
+    participant Shared as pkgm-shared (InputField, CustomizedButton)
+
+    Parent->>USL: props (userName, profilePic, onPressChannelSettingsText, onPressUserSignoutFunction, onPressUserUpdateDetailsFunction)
+
+    USL->>USL: useState formData (Full Name, Username, About)
+    USL->>Shared: InputField for each — handleChange(fieldId, value)
+
+    User->>USL: tap "Channel Settings"
+    USL->>Parent: onPressChannelSettingsText()
+
+    User->>USL: tap "Update"
+    USL->>Parent: onPressUserUpdateDetailsFunction(formData)
+
+    User->>USL: tap "Sign out"
+    USL->>Parent: onPressUserSignoutFunction()
+
+---
+%% 4. VIDEO UPLOAD SETTINGS LAYOUT — Pick video, thumb, post flow
+sequenceDiagram
+    autonumber
+    participant User
+    participant VUSL as VideoUploadSettingsLayout
+    participant ImagePicker as expo-image-picker
+    participant Thumbnails as expo-video-thumbnails
+    participant Parent
+
+    Parent->>VUSL: props (profilePic, userName, onPressWireUploadScreen, onPressVideoUploadAsync, postVideo)
+
+    User->>VUSL: tap "Pick Video"
+    VUSL->>ImagePicker: launchImageLibraryAsync(mediaTypes: videos)
+    ImagePicker-->>VUSL: result.assets (video URI)
+    VUSL->>VUSL: setVideoAssets, setImageAndroid(uri)
+    VUSL->>Thumbnails: getThumbnailAsync(uri, time: 1000)
+    Thumbnails-->>VUSL: thumbUri
+    VUSL->>VUSL: setThumbnailIOS(thumbUri)
+
+    User->>VUSL: tap "Pick Thumbnail" (optional)
+    VUSL->>ImagePicker: launchImageLibraryAsync(mediaTypes: images)
+    ImagePicker-->>VUSL: image asset
+    VUSL->>VUSL: setImageThumb
+
+    User->>VUSL: type title / description (InputField)
+    VUSL->>VUSL: setTitle, setDescription
+
+    User->>VUSL: tap "Post" / upload button
+    VUSL->>Parent: postVideo(...) or onPressVideoUploadAsync(...)
+
+    opt Wire upload entry
+        User->>VUSL: tap (Wire upload CTA)
+        VUSL->>Parent: onPressWireUploadScreen()
+    end

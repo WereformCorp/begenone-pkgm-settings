@@ -1,70 +1,122 @@
 /**
  * HistoryContainer
  *
- * Horizontal history rail for previously viewed content.
- * Designed for compact, scrollable display using VideoCardLayout.
- *
- * Responsibilities:
- * - Render a "History" section header
- * - Display video cards in a horizontal ScrollView
- * - Adapt VideoCardLayout for history use by hiding non-essential metadata
- *
- * Props:
- * - timeAgo: Relative timestamp (e.g. "2h ago")
- * - viewsText: View count label
- * - titleText: Video title
- * - userNameText: Channel or creator name
- * - contentThumbUrl: Thumbnail image URL
- * - channelLogo: Channel logo image URL
- *
- * Notes:
- * - Styling overrides intentionally suppress metadata like user info and views
- * - Component is presentational only (no state, no side effects)
- * - VideoCardLayout is reused in a constrained, history-specific layout
+ * Horizontal scroll of history cards. Max 2 visible, scrollable.
+ * Each card: thumbnail, title, date, views.
  */
 
-import { VideoCardLayout } from "@wereform/pkgm-video";
-import { ScrollView, Text } from "react-native";
-import { GSOLStyles } from "../styles/GSOLStyles";
+import { useMemo } from "react";
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  Text,
+  useWindowDimensions,
+  View,
+} from "react-native";
+import { GSOLStyles as S } from "../styles/GSOLStyles";
 
-export function HistoryContainer({
+const DEFAULT_THUMB =
+  "https://begenone-images.s3.us-east-1.amazonaws.com/let+Me+Love+you.jpg";
+const CARD_GAP = 12;
+const SECTION_PADDING = 32;
+
+function HistoryCard({
   timeAgo,
   viewsText,
   titleText,
-  userNameText,
   contentThumbUrl,
-  channelLogo,
+  onPress,
+  style,
 }) {
-  return (
-    <>
-      {/* Section heading */}
-      <Text style={GSOLStyles.historyText}>History</Text>
+  const views = viewsText != null ? String(viewsText) : null;
 
-      {/* Horizontal scroll container */}
-      <ScrollView horizontal={true} style={GSOLStyles.videoCardLayoutContainer}>
-        <VideoCardLayout
-          timeAgo={timeAgo}
-          viewsText={viewsText}
-          titleText={titleText}
-          userNameText={userNameText}
-          contentThumbUrl={contentThumbUrl}
-          channelLogo={channelLogo}
-          /**
-           * Style overrides for history context
-           * - Compact card width
-           * - Hide user, date, and view metadata
-           * - Emphasize thumbnail and title only
-           */
-          containerStyles={{ width: 200, marginBottom: 20 }}
-          dateViewsContainerStyle={{ display: "none" }}
-          userImageStyles={{ display: "none" }}
-          titleTextStyles={{ fontSize: 16, lineHeight: 22 }}
-          userNameTextStyles={{ display: "none" }}
-          customMetaDataStyles={{}}
-          thumbnailImageStyles={{}}
-          titleNameContainerStyles={{ paddingLeft: 0 }}
+  const card = (
+    <View style={[S.historyCard, style]}>
+      <View style={S.historyCardThumb}>
+        <Image
+          source={{ uri: contentThumbUrl || DEFAULT_THUMB }}
+          style={S.historyCardThumbImage}
+          resizeMode="cover"
         />
-      </ScrollView>
-    </>
+      </View>
+      <View style={S.historyCardBody}>
+        <Text style={S.historyCardTitle} numberOfLines={2}>
+          {titleText || "Untitled"}
+        </Text>
+        <View style={S.historyCardMeta}>
+          <Text style={S.historyCardMetaItem}>{timeAgo || "Recently"}</Text>
+          {views != null && (
+            <>
+              <Text style={S.historyCardMetaItem}>•</Text>
+              <Text style={S.historyCardMetaItem}>{views} views</Text>
+            </>
+          )}
+        </View>
+      </View>
+    </View>
+  );
+
+  if (onPress) {
+    return (
+      <Pressable
+        onPress={onPress}
+        style={({ pressed }) => ({ opacity: pressed ? 0.85 : 1 })}
+      >
+        {card}
+      </Pressable>
+    );
+  }
+
+  return card;
+}
+
+export function HistoryContainer({
+  items,
+  timeAgo,
+  viewsText,
+  titleText,
+  contentThumbUrl,
+  onPress,
+}) {
+  const { width } = useWindowDimensions();
+  const cardWidth = useMemo(
+    () => (width - SECTION_PADDING - CARD_GAP) / 1.5,
+    [width],
+  );
+
+  const list = useMemo(() => {
+    if (Array.isArray(items) && items.length > 0) {
+      return items;
+    }
+    if (titleText != null || contentThumbUrl != null || timeAgo != null) {
+      return [{ timeAgo, viewsText, titleText, contentThumbUrl }];
+    }
+    return [];
+  }, [items, timeAgo, viewsText, titleText, contentThumbUrl]);
+
+  if (list.length === 0) return null;
+
+  return (
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={S.historyScrollContent}
+    >
+      {list.map((item, i) => (
+        <HistoryCard
+          key={i}
+          timeAgo={item.timeAgo}
+          viewsText={item.viewsText}
+          titleText={item.titleText}
+          contentThumbUrl={item.contentThumbUrl}
+          onPress={onPress}
+          style={{
+            width: cardWidth,
+            marginRight: i < list.length - 1 ? CARD_GAP : 0,
+          }}
+        />
+      ))}
+    </ScrollView>
   );
 }

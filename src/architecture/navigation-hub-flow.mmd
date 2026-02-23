@@ -1,0 +1,21 @@
+sequenceDiagram
+    autonumber
+    participant Parent as Parent / Settings Screen
+    participant GSOL as GeneralSettingsOverviewLayout
+    participant History as HistoryContainer
+
+    Parent->>GSOL: props (onPressUserSettings, onPressChannelSettings, onPressPricings, showHistory)
+
+    GSOL->>GSOL: render Recent section (optional)
+    GSOL->>History: render HistoryContainer (timeAgo, titleText, etc.)
+
+    GSOL->>GSOL: render General > Account card (Likes, Dislikes, User Settings, Channel Settings, Pricings)
+
+    User->>GSOL: tap "User Settings"
+    GSOL->>Parent: onPressUserSettings()
+
+    User->>GSOL: tap "Channel Settings"
+    GSOL->>Parent: onPressChannelSettings()
+
+    User->>GSOL: tap "Pricings"
+    GSOL->>Parent: onPressPricings()

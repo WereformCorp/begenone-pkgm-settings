@@ -1,58 +1,154 @@
 import { StyleSheet } from "react-native";
-import { globalStyles } from "./globalStyles";
 
-/* General settings overview layout styles */
+const COLORS = {
+  bgBase: "#080808",
+  bgCard: "#121212",
+  bgButton: "#1C1C1C",
+  textPrimary: "#fff",
+  textMuted: "rgba(255,255,255,0.55)",
+  accent: "#ff5e00",
+  border: "rgba(255,255,255,0.06)",
+};
+
 export const GSOLStyles = StyleSheet.create({
+  /* ── root ── */
+  scroll: {
+    // flex: 1,
+    backgroundColor: COLORS.bgBase,
+  },
+
   container: {
-    // Root settings container
-    flexDirection: "column",
-    marginRight: 12,
-    marginLeft: 12,
+    paddingBottom: 120,
   },
 
-  secondaryContainer: {
-    // Bottom spacing for scroll safety
-    marginBottom: 96,
-  },
-
-  historyContainer: {
-    // Divider for history section
+  /* ── history section ── */
+  historySection: {
+    paddingHorizontal: 16,
+    paddingTop: 20,
+    paddingBottom: 20,
     borderBottomWidth: 1,
-    borderBottomColor: globalStyles.colors.colorPrimary400,
+    borderBottomColor: COLORS.border,
   },
 
-  historyText: {
-    // History section heading
-    color: "#fff",
-    fontWeight: "800",
-    fontSize: 24,
-    padding: 12,
+  historySectionLabel: {
+    color: COLORS.textMuted,
+    fontSize: 11,
+    fontWeight: "600",
+    letterSpacing: 1.5,
+    textTransform: "uppercase",
+    marginBottom: 14,
   },
 
-  videoCardLayoutContainer: {
-    // Horizontal card layout wrapper
+  historyScrollContent: {
+    paddingRight: 16,
+  },
+
+  /* ── history card ── */
+  historyCard: {
+    backgroundColor: COLORS.bgCard,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    overflow: "hidden",
+  },
+
+  historyCardThumb: {
+    width: "100%",
+    aspectRatio: 16 / 9,
+    backgroundColor: COLORS.bgButton,
+  },
+
+  historyCardThumbImage: {
+    width: "100%",
+    height: "100%",
+  },
+
+  historyCardBody: {
+    padding: 14,
+  },
+
+  historyCardTitle: {
+    color: COLORS.textPrimary,
+    fontSize: 15,
+    fontWeight: "700",
+    lineHeight: 20,
+    marginBottom: 8,
+  },
+
+  historyCardMeta: {
     flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
   },
 
-  generalSettings: {
-    // General settings section container
-    flexDirection: "column",
-    marginTop: 24,
+  historyCardMetaItem: {
+    color: COLORS.textMuted,
+    fontSize: 12,
+    fontWeight: "500",
   },
 
-  generalText: {
-    // General settings heading
-    color: "#fff",
+  /* ── general section ── */
+  generalSection: {
+    paddingHorizontal: 16,
+    paddingTop: 24,
+  },
+
+  heading: {
+    color: COLORS.textPrimary,
+    fontSize: 22,
     fontWeight: "800",
-    fontSize: 24,
-    paddingBottom: 12,
-    paddingLeft: 12,
+    letterSpacing: 0.2,
+    marginBottom: 20,
   },
 
-  settingsButtonContainer: {
-    // Settings action container
-    backgroundColor: globalStyles.colors.colorPrimary350,
-    borderRadius: globalStyles.borders.borderPrimary400,
-    padding: 24,
+  sectionLabel: {
+    color: COLORS.textMuted,
+    fontSize: 11,
+    fontWeight: "600",
+    letterSpacing: 1.5,
+    textTransform: "uppercase",
+    marginBottom: 12,
+  },
+
+  /* ── setting rows ── */
+  settingsCard: {
+    backgroundColor: COLORS.bgCard,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    overflow: "hidden",
+  },
+
+  settingRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+  },
+
+  settingRowBorder: {
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
+  },
+
+  settingIcon: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    backgroundColor: COLORS.bgButton,
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 14,
+  },
+
+  settingLabel: {
+    flex: 1,
+    color: COLORS.textPrimary,
+    fontSize: 15,
+    fontWeight: "600",
+  },
+
+  settingChevron: {
+    opacity: 0.3,
   },
 });
