@@ -1,0 +1,19 @@
+sequenceDiagram
+    autonumber
+    participant Parent
+    participant USL as UserSettingsLayout
+    participant Shared as pkgm-shared (InputField, CustomizedButton)
+
+    Parent->>USL: props (userName, profilePic, onPressChannelSettingsText, onPressUserSignoutFunction, onPressUserUpdateDetailsFunction)
+
+    USL->>USL: useState formData (Full Name, Username, About)
+    USL->>Shared: InputField for each — handleChange(fieldId, value)
+
+    User->>USL: tap "Channel Settings"
+    USL->>Parent: onPressChannelSettingsText()
+
+    User->>USL: tap "Update"
+    USL->>Parent: onPressUserUpdateDetailsFunction(formData)
+
+    User->>USL: tap "Sign out"
+    USL->>Parent: onPressUserSignoutFunction()
