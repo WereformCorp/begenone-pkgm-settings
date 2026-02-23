@@ -1,0 +1,23 @@
+sequenceDiagram
+    autonumber
+    participant Parent
+    participant CSL as ChannelSettingsLayout
+    participant Shared as pkgm-shared (InputField, CustomizedButton)
+
+    Parent->>CSL: props (userName, profilePic, handleChannelUpdateCreate, channelExist, onPressUserSettingsText)
+
+    CSL->>CSL: useState formData (name, username, about)
+    CSL->>Shared: InputField (name, username, about) — handleChange(fieldId, value)
+    Shared->>CSL: onChangeText → setFormData
+
+    User->>CSL: tap "User Settings"
+    CSL->>Parent: onPressUserSettingsText()
+
+    User->>CSL: tap "Save" or "Create"
+    CSL->>CSL: handleChannelUpdate()
+    CSL->>Parent: handleChannelUpdateCreate({ name, username, about })
+
+    opt channelExist
+        User->>CSL: tap "Delete"
+        CSL->>Parent: (onPress delete — wired by parent)
+    end
